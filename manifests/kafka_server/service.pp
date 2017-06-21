@@ -4,6 +4,7 @@ class confluent::kafka_server::service (
   $daemonname        = 'kafka-server',
   $propertyname      = 'server.properties',
   $pidpattern        = '[k]afkaServer',
+  $pidfile           = '/var/run/kafka-server.pid',
   $kafka_opts        = $confluent::kafka_server_opts,
   $heap_opts         = $confluent::kafka_server_heap_opts,
   $require_zookeeper = true,
@@ -11,7 +12,7 @@ class confluent::kafka_server::service (
 
   file { '/etc/init.d/kafka-server':
     ensure  => file,
-    mode    => '0755',    
+    mode    => '0755',
     content => template('confluent/init.erb'),
     require => Package[ "confluent-kafka-${::confluent::scala_version}" ],
   }

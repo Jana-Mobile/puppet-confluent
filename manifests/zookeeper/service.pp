@@ -4,9 +4,10 @@ class confluent::zookeeper::service (
   $daemonname   = 'zookeeper-server',
   $propertyname = 'zookeeper.properties',
   $pidpattern   = '[z]ookeeper.server',
+  $pidfile      = '/var/run/zookeeper.pid',
   $kafka_opts   = $confluent::zookeeper_opts,
   $heap_opts    = $confluent::zookeeper_heap_opts,
-) { 
+) {
 
   file { '/etc/init.d/zookeeper':
     ensure  => file,

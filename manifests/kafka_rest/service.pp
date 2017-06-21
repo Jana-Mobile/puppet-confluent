@@ -4,6 +4,7 @@ class confluent::kafka_rest::service (
   $daemonname = 'kafka-rest',
   $propertyname = 'kafka-rest.properties',
   $pidpattern = '[k]afka-rest',
+  $pidfile = '/var/run/kafka-rest.pid',
   $require_zookeeper = false,
   $require_kafka = false,
   $require_schema_registry = false,
