@@ -32,7 +32,7 @@ case "$1" in
   stop)
     # Stop daemons.
     echo "Shutting down $DAEMON_NAME";
-    start-stop-daemon --stop --pidfile $PIDFILE --remove-pidfile --retry 5
+    start-stop-daemon --stop --pidfile $PIDFILE --retry 5
     exit $?
   ;;
   restart)
