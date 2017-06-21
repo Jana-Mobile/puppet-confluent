@@ -14,6 +14,7 @@ DAEMON_PATH="<%= @daemonpath %>"
 CONFIG_PATH="<%= @configpath %>"
 DAEMON_NAME="<%= @daemonname %>"
 PROPERTY_NAME="<%= @propertyname %>"
+PIDFILE="<%= @pidfile %>"
 PID_PATTERN="<%= @pidpattern %>"
 export KAFKA_HEAP_OPTS="<%= @heap_opts %>"
 export KAFKA_OPTS="<%= @kafka_opts %>"
@@ -25,13 +26,13 @@ case "$1" in
   start)
     # Start daemon.
     echo "Starting $DAEMON_NAME";
-    $DAEMON_PATH/$DAEMON_NAME-start -daemon $CONFIG_PATH/$PROPERTY_NAME
+    start-stop-daemon --background --start --pidfile $PIDFILE --make-pidfile --startas $DAEMON_PATH/$DAEMON_NAME-start $CONFIG_PATH/$PROPERTY_NAME
     exit $?
     ;;
   stop)
     # Stop daemons.
     echo "Shutting down $DAEMON_NAME";
-    $DAEMON_PATH/$DAEMON_NAME-stop
+    start-stop-daemon --stop --pidfile $PIDFILE --remove-pidfile --retry 5
     exit $?
   ;;
   restart)
