@@ -3,10 +3,11 @@ class confluent::schema_registry::service (
   $configpath = '/etc/schema-registry',
   $daemonname = 'schema-registry',
   $propertyname = 'schema-registry.properties',
+  $pidfile = '/var/run/schema-registry.pid',
   $pidpattern = '[s]chema-registry',
   $require_zookeeper = true,
   $require_kafka = true,
- ) {
+) {
 
   file { '/etc/init.d/kafka-schema_registry':
     ensure  => file,
